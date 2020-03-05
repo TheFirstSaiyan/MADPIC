@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         myFilesDir = new File(Environment.getExternalStorageDirectory(),"images_MAD");
         mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(mTopToolbar);
-
         if(!myFilesDir.exists())
             myFilesDir.mkdirs();
        // myFilesDir = new File(Environment.getExternalStoragePublicDirectory(
@@ -93,8 +92,12 @@ public class MainActivity extends AppCompatActivity {
 
 
             Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+           // RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
             intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"speak");
+            intent.putExtra(RecognizerIntent.EXTRA_PREFER_OFFLINE,true);
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
+
             try
             {
                 startActivityForResult(intent,2);
@@ -137,6 +140,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"speak");
+        intent.putExtra(RecognizerIntent.EXTRA_PREFER_OFFLINE,true);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
+
         try
         {
             startActivityForResult(intent,1);
